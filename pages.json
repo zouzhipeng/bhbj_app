@@ -1,0 +1,101 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "default"
+			}
+		}
+        ,{
+            "path" : "pages/index/home",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/index/order",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/index/loginbox",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/package_info",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/center",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/package_list",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/index/custom",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/goods/package",
+            "style" : {
+				"navigationStyle": "default"
+			}
+        }
+        ,{
+            "path" : "pages/agent/agent_apply",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/agent/index",
+            "style" : {
+				"enablePullDownRefresh":true
+			}
+        }
+        ,{
+            "path" : "pages/agent/user_list",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/agent/money_log",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/agent/withdrawal",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/agent/withdrawal_list",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/order_list",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/user/order_info",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/goods/info",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/goods/cart",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/order/info",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/order/list",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "帮洁到家",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom"
+	}
+}
