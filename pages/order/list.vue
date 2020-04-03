@@ -35,6 +35,8 @@
 			};
 		},
 		onLoad(){
+		},
+		onShow(){
 			app.globalData.login(()=>{
 				this.orderList()
 			})

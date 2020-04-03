@@ -100,7 +100,6 @@
 		data() {
 			return {
 				info:{},
-				package_info:"",
 				loginBoxShow:0,
 				agent_ratio:0,
 				user_info:{},
@@ -132,7 +131,6 @@
 			},0)
 			u.getConfig((sys_config)=>{
 				this.agent_ratio = sys_config.agent_ratio/100
-				this.package_info = sys_config.wxapp_package_info
 			})
 		},
 		onShareAppMessage(){
@@ -239,7 +237,7 @@
 					var config = [
 						{
 							type:"img",
-							url:u.app_config.domain+"activity/package_qrcode?page=pages/goods/package&scene="+encodeURIComponent("id="+this.id+"&inviter_id="+user_info.user_id),
+							url:u.app_config.domain+"activity/package_qrcode?page=pages/goods/info&scene="+encodeURIComponent("id="+this.id+"&inviter_id="+user_info.user_id),
 							x:300,
 							y:820,
 							w:150,

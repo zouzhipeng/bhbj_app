@@ -40,7 +40,7 @@
 		},
 		onShareAppMessage(){
 			return {
-				title: '帮洁活动来啦，38洗两件羽绒服，线上预约，上门取送！',
+				title: '特惠洗护，帮洁到家！',
 				path: '/pages/index/index?inviter_id='+app.globalData.user_info.user_id
 			}
 		},

@@ -20,7 +20,7 @@
 				<button @tap="agentApply" class="cu-btn block bg-green margin-tb-sm lg">申请成为合伙人</button>
 			</view>
 		</form>
-		
+		<loginbox :loginBoxShow.sync="loginBoxShow"></loginbox>
 	</view>
 </template>
 
@@ -30,7 +30,8 @@
 	export default {
 		data() {
 			return {
-				post_data:{}
+				post_data:{},
+				loginBoxShow:0,
 			};
 		},
 		methods:{
