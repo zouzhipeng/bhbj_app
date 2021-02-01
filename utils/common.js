@@ -148,12 +148,24 @@ function build_poster(p){
 		title:"海报制作中"
 	})
 	load_img(()=>{
-		ctx.drawImage(bg_img.path,0, 0)
+		if(p.bg_img){
+			ctx.drawImage(bg_img.path,0, 0)
+		}
+		else{
+			ctx.setFillStyle('#ffffff')
+			ctx.fillRect(0, 0, p.bg_w, p.bg_h) 
+		}
 		
 		for(var i in config){
 			var item = config[i]
 			if(item.type == 'img'){
-				ctx.drawImage(item.img.path,item.x, item.y, item.w,item.h)
+				if(item.radius){
+					var _radius = item.radius
+					drawRoundRect(ctx, _radius, item.x, item.y, item.w, item.h, item.img.path)
+				}
+				else{
+					ctx.drawImage(item.img.path,item.x, item.y, item.w,item.h)
+				}
 			}
 			else if(item.type == 'text'){
 				ctx.setFillStyle(item.color)
@@ -181,18 +193,38 @@ function build_poster(p){
 		})
 	})
 	
+	function drawRoundRect(ctx, r, x, y, w, h, img) {
+		console.log(r, x, y, w, h)
+		ctx.save()
+		if (w < 2 * r) r = w / 2
+		if (h < 2 * r) r = h / 2
+		ctx.beginPath()
+		ctx.moveTo(x + r, y)
+		ctx.arcTo(x + w, y, x + w, y + h, r)
+		ctx.arcTo(x + w, y + h, x, y + h, r)
+		ctx.arcTo(x, y + h, x, y, r)
+		ctx.arcTo(x, y, x + w, y, r)
+		ctx.closePath();
+		ctx.clip()
+		ctx.drawImage(img, x, y, w, h)
+		ctx.restore() // 返回上一状态
+	}
+	
 	function load_img(fn){
-		let img_num = 1
-		uni.getImageInfo({
-		    src: p.bg_img.replace('http://','https://'), //仅为示例，并非真实的资源
-		    success: (res) => {
-				bg_img = res
-		    },
-			complete() {
-				img_num--
-				if(img_num<=0)fn&&fn()
-			}
-		});
+		let img_num = 0
+		if(p.bg_img){
+			img_num++;
+			uni.getImageInfo({
+				src: p.bg_img.replace('http://','https://'), //仅为示例，并非真实的资源
+				success: (res) => {
+					bg_img = res
+				},
+				complete() {
+					img_num--
+					if(img_num<=0)fn&&fn()
+				}
+			});
+		}
 		
 		for(let i in config){
 			if(config[i].type == 'img'){

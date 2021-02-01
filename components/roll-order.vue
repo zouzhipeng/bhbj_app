@@ -34,6 +34,7 @@
 					data:{
 						page:this.page
 					},
+					passloading:1,
 					success:(res)=>{
 						this.list = res.list
 						fn&&fn()

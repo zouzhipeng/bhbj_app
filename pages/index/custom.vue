@@ -65,6 +65,7 @@
 		display: block;
 		width: 100%;
 		position: relative;
+		z-index: 1000;
 		.diy-bar{
 			display: flex;
 			position: fixed;

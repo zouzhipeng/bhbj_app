@@ -10,7 +10,7 @@
 				<image :src="item" mode="aspectFill"></image>
 			</swiper-item>
 		</swiper>
-		<canvas canvas-id="poster" class="poster-canvas"></canvas>
+		<canvas canvas-id="poster" class="poster-canvas" :style="canvasH?('height:'+canvasH+'px'):''"></canvas>
 		<view class="cu-bar bg-white">
 			<view class="action">
 				<text class="cuIcon-titles text-orange"></text>{{info.title}}
@@ -106,7 +106,8 @@
 				poster_url:"",
 				cart_num:0,
 				cart:[],
-				modalName:""
+				modalName:"",
+				canvasH:"",
 			};
 		},
 		onLoad(p) {
@@ -235,44 +236,81 @@
 				}
 				app.globalData.login((user_info)=>{
 					var config = [
-						{
-							type:"img",
-							url:u.app_config.domain+"activity/package_qrcode?page=pages/goods/info&scene="+encodeURIComponent("id="+this.id+"&inviter_id="+user_info.user_id),
-							x:300,
-							y:820,
-							w:150,
-							h:150,
-						},
+						// {
+						// 	type:"img",
+						// 	url:u.app_config.domain+"activity/package_qrcode?page=pages/goods/info&scene="+encodeURIComponent("id="+this.id+"&inviter_id="+user_info.user_id),
+						// 	x:300,
+						// 	y:820,
+						// 	w:150,
+						// 	h:150,
+						// },
+						// {
+						// 	type:"img",
+						// 	url:this.info.img,
+						// 	x:180,
+						// 	y:265,
+						// 	w:400,
+						// 	h:520,
+						// },
+						// {
+						// 	type:"img",
+						// 	url:user_info.headimgurl,
+						// 	x:570,
+						// 	y:860,
+						// 	w:80,
+						// 	h:80,
+						// },
+						// {
+						// 	type:"text",
+						// 	text:user_info.nickname,
+						// 	x:610,
+						// 	y:970,
+						// 	size:24,
+						// 	align:"center",
+						// 	color:"#ffffff"
+						// },
 						{
 							type:"img",
 							url:this.info.img,
-							x:180,
-							y:265,
-							w:400,
-							h:520,
+							x:0,
+							y:0,
+							w:750,
+							h:900,
+						},
+						{
+							type:"img",
+							url:u.app_config.domain+"activity/package_qrcode?page=pages/goods/info&scene="+encodeURIComponent("id="+this.id+"&inviter_id="+user_info.user_id),
+							x:520,
+							y:930,
+							w:200,
+							h:200,
 						},
 						{
 							type:"img",
 							url:user_info.headimgurl,
-							x:570,
-							y:860,
-							w:80,
-							h:80,
+							x:30,
+							y:940,
+							w:160,
+							h:160,
+							radius:100,
 						},
 						{
-							type:"text",
-							text:user_info.nickname,
-							x:610,
-							y:970,
-							size:24,
-							align:"center",
-							color:"#ffffff"
-						},
+							type:"img",
+							url:u.app_config.domain_root+"/img/zhiwen.png",
+							x:290,
+							y:930,
+							w:170,
+							h:200,
+						}
 					]
+					this.canvasH = 1160;
 					
 					u.build_poster({
 						canvasId:'poster',
-						bg_img:u.app_config.domain_root+'public/img/poster_bg.jpg',
+						//bg_img:u.app_config.domain_root+'public/img/poster_bg.jpg',
+						bg_img:'',
+						bg_w:750,
+						bg_h:1500,
 						config:config,
 						success:(res)=>{
 							this.poster_url = res

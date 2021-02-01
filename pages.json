@@ -90,6 +90,22 @@
             "path" : "pages/order/list",
             "style" : {}
         }
+        ,{
+            "path" : "pages/user/worker",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/worker/store",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/worker/store_code",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/worker/store_order",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -97,5 +113,18 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"navigationStyle": "custom"
+	},
+	"condition": { //模式配置，仅开发期间生效
+	    "current": 0, //当前激活的模式（list 的索引项）
+	    "list": [
+	        {
+	            "name": "store",
+	            "path": "pages/worker/store"
+	        },
+	        {
+	            "name": "worker",
+	            "path": "pages/user/worker"
+	        }
+	    ]
 	}
 }

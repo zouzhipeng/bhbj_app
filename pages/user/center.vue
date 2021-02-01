@@ -43,6 +43,12 @@
 				<text class="flex-grow">合伙人申请</text>
 				<icon class="icon icon-arrow-right"></icon>
 			</button>
+			<button v-if="userInfo.manage_id" @tap="navTo('/pages/user/worker')" class="menu-item">
+				<icon class="menu-icon icon icon-dailishang"></icon>
+				<text class="flex-grow">进入工作台</text>
+				<icon class="icon icon-arrow-right"></icon>
+			</button>
+			
 		</view>
 		<view class="copyright">
 			copyright | 百护帮洁

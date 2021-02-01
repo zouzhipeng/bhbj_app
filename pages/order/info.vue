@@ -7,7 +7,7 @@
 		<view class="info-title">[订单号]{{info.wxapp_order_no}}</view>
 		<block v-if="info.status==2">
 			<view class="order-title">
-				<text>二维码请出示给店员</text>
+				<text>二维码请出示给店员(<text class="text-red">有效期至{{u.timeToStr(info.add_time+2592000,'yyyy年MM月dd日')}}</text>)</text>
 			</view>
 			<view class="order-qrcode">
 				<view class="qrimg flex justify-center">

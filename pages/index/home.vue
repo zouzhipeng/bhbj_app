@@ -25,7 +25,7 @@
 			</view>
 			
 		</view>
-		<view class="home-title">
+		<view id="store_layer" class="home-title">
 			<text>直营门店</text>
 		</view>
 		<view class="store-list">
@@ -83,7 +83,7 @@
 	export default {
 		data() {
 			return {
-				swiperList: [],
+				swiperList:[],
 				store_list:[],
 				goods_list:[],
 				cart_num:0,
@@ -94,12 +94,18 @@
 				wxapp_scope_desc:"",
 			}
 		},
+		props: {
+			toStore: {
+				type: [Boolean],
+				default: false
+			},
+		},
 		name:"home",
 		mounted() {
 			app = getApp()
 			
-			this.storeList()	
-			this.goodsList()
+			this.storeList(()=>{this.loadInit()})	
+			this.goodsList(()=>{this.loadInit()})
 			// if(app.globalData.cart.length>0){
 			// 	this.cart = app.globalData.cart
 			// }
@@ -110,16 +116,34 @@
 			})
 		},
 		methods: {
-			storeList(){
+			loadInit(){
+				if(this.store_list.length>0&&this.goods_list.length > 0){
+					if(this.toStore){
+						this.$nextTick(()=>{
+							let query = uni.createSelectorQuery().in(this);
+							query.select('#store_layer').boundingClientRect(data => {
+							  console.log("得到布局位置信息" + JSON.stringify(data));
+							  console.log("节点离页面顶部的距离为" + data.top);
+								uni.pageScrollTo({
+									scrollTop: data.top,
+									duration: 0
+								})
+							}).exec();
+						})
+					}
+				}
+			},
+			storeList(fn){
 				u.request({
 					url:"store/get_list",
 					passloading:1,
 					success:(res)=>{
 						this.store_list = res.list
+						fn&&fn()
 					}
 				})
 			},
-			goodsList(){
+			goodsList(fn){
 				u.request({
 					url:"goods/get_list",
 					data:{
@@ -129,6 +153,7 @@
 					passloading:1,
 					success:(res)=>{
 						this.goods_list = res.list
+						fn&&fn()
 					}
 				})
 			},

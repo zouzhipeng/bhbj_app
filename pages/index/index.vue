@@ -10,7 +10,7 @@
 				我的
 			</view>
 		</view>
-		<home v-if="PageCur=='home'"></home>
+		<home v-if="PageCur=='home'" :toStore="toStore"></home>
 		<center v-if="PageCur=='center'" :userInfo="user_info"  @login="login" @loginTo="loginTo"></center>
 		<loginbox :loginBoxShow.sync="loginBoxShow"></loginbox>
 		<rollorder></rollorder>
@@ -26,11 +26,15 @@
 				PageCur: 'home',
 				loginBoxShow:0,
 				user_info:{},
+				toStore:false
 			}
 		},
 		onLoad(p) {
 			if(p.cur){
 				this.PageCur = p.cur
+			}
+			if(p.toStore){
+				this.toStore = true
 			}
 		},
 		onShow(){
